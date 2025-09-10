@@ -12,15 +12,29 @@ body {
 }
 
 header {
-    padding-top: 60px;
-    text-align: center;
-    color: rgb(0, 0, 0);
+    display: flex;            /* coloca botão e h1 na mesma linha */
+    align-items: center;      /* centraliza verticalmente */
+    gap: 16px;                /* espaço entre botão e título */
+    height: 56px;             /* altura do header */
+    padding: 0 16px 0 100px;          /* espaço lateral */
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
 }
 
-h1 {
-    color: black;
-    text-align: center;
+header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: #202124;
+    margin-left: 16px;
 }
+
+
 
 nav {
     display: flex;
