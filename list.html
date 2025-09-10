@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="list.css">
+</head>
+<body>
+    <header class="box-header">
+        <nav>
+            <button type="button" id="menubtn" class="buttonMenu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+             <line x1="3" y1="6" x2="21" y2="6"></line>
+             <line x1="3" y1="12" x2="21" y2="12"></line>
+             <line x1="3" y1="18" x2="21" y2="18"></line>
+           </svg></button>
+            <ul class="menu">
+                <li class="navegacao"><a href="#lista">Lista</a></li>
+                <li class="navegacao"><a href="#registro">Registro</a></li>
+                <li class="navegacao"><a href="#login">Login</a></li>
+                <li class="navegacao"><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <h1>Minha Lista de Tarefas</h1>
+
+    <main>
+        <div class="postit">
+            <h2>Organize seu dia</h2>
+            <input type="text" id="tarefa" placeholder="Digite uma tarefa">
+            <button id="adicionar">Adicionar tarefa</button>
+            <ul id="lista" class="lista-tarefas"></ul>
+        </div>
+    </main>
+
+    <script src="list.js"></script>
+</body>
+
+
+    <script src="list.js"></script>
+</body>
+</html>

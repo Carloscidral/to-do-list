@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    color: rgb(250, 250, 250);
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f2f3;
+}
+
+header {
+    padding-top: 60px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgba(218, 216, 216, 0.514);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+body.menuOpen nav ul.menu {
+    visibility: visible;
+}
+
+.buttonMenu {
+        background: none;
+        border: none;
+        padding: 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: #5f6368; /* cinza padrão do Google */
+}
+
+.buttonMenu {
+    background: rgba(60,64,67,0.08); /* cinza claro */
+}
+
+nav ul.menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    gap: 20px;
+    visibility: hidden;
+}
+
+nav ul.menu li a {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+nav ul.menu li:hover {
+    background: rgb(155, 0, 0);
+    color: rgb(255, 248, 248);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 70px;
+}
+
+.postit {
+    width: 90%;
+    max-width: 400px;
+    max-height: 70vh;
+    padding: 15px;
+    background: rgb(155, 0, 0); 
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.postit h2 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    flex-shrink: 0;
+}
+
+input, #adicionar {
+    margin: 5px 0;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.lista-tarefas {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.navegacao {
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90px;
+        background: #942a2a;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 16px;
+        height: auto;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;              /* ocupa toda a largura */
+    background: #942a2a;
+   padding: auto;
+    border-radius: 4px;
+    font-size: 16px;          /* letra maior */
+    height: auto;             /* altura ajustável */
+}
+
+li button {
+    margin-left: auto;        /* empurra para a direita */
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    nav ul.menu {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .postit {
+        max-height: 80vh;
+        padding: 10px;
+    }
+
+    li {
+        flex-direction: column;      /* texto em cima, botão embaixo */
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    li button {
+        margin-left: 0;
+        align-self: flex-end;        /* botão vai para direita */
+    }
+}
