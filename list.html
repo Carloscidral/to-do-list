@@ -25,22 +25,29 @@
         </nav>
         <h1>Minha Lista de Tarefas</h1>
     </header>
-
-        
-
     <main>
+        <div class="conteudo">
         <div class="postit">
             <h2>Organize seu dia</h2>
             <input type="text" id="tarefa" placeholder="Digite uma tarefa">
-            <button id="adicionar">Adicionar tarefa</button>
+            <button id="adicionar" class="botao" >Adicionar tarefa</button>
             <ul id="lista" class="lista-tarefas"></ul>
         </div>
+
+        <div class="listas-cadastradas">
+            <h2>Listas Cadastradas</h2>
+            <input type="text" id="nomeLista" placeholder="Digite o nome da lista">
+            <button id="adicionarLista" class="botao" >Adicionar Lista</button>
+
+            <ul id="outras-listas">
+                <li>Trabalho</li>
+                <li>Estudos</li>
+                <li>Compras</li>
+            </ul>
+        </div>
+
+        </div>
     </main>
-
-    <script src="list.js"></script>
-</body>
-
-
     <script src="list.js"></script>
 </body>
 </html>
