@@ -2,55 +2,154 @@ let tarefa = document.getElementById('tarefa');
 let adicionar = document.getElementById('adicionar');
 let lista = document.getElementById('lista');
 
-// abre/fecha menu
-document.getElementById("menubtn").onclick = () => {
-    document.querySelector("body").classList.toggle("menuOpen");
+const menuBtn = document.getElementById('menubtn');
+menuBtn.onclick = () => {
+    document.body.classList.toggle("menuOpen");
 };
 
-// evento de adicionar tarefa
+let nomeLista = document.getElementById('nomeLista');
+let adicionarLista = document.getElementById('adicionarLista');
+let outrasListas = document.getElementById('outras-listas');
+let listaTarefas = document.getElementById('lista');
+
+let listas = JSON.parse(localStorage.getItem('listas')) || {}
+let listaAtual = localStorage.getItem('listaAtual') || null;
+
+//Atualiza localStorage
+function salvar() {
+    localStorage.setItem('listas', JSON.stringify(listas));
+    localStorage.setItem('listaAtual', listaAtual);    
+}
+
+// Seleciona lista
+function selecionarLista(nome) {
+    listaAtual = nome;
+    atualizarTarefas();
+    salvar();
+}
+
+// Atualiza painel de tarefas
+function atualizarTarefas() {
+    listaTarefas.innerHTML = '';
+    if (!listaAtual) return;
+    
+    listas[listaAtual].forEach((texto, index) => {
+        let item = document.createElement('li');
+        let span = document.createElement('span');
+        span.textContent = texto;
+
+        let acoes = document.createElement('div');
+        acoes.classList.add('acoes');
+
+        // Editar tarefa
+        let botaoEditar = document.createElement('button');
+        botaoEditar.innerHTML = '<img src="img/botao-editar.png" alt="Editar">';
+        botaoEditar.title = "Editar";
+        botaoEditar.addEventListener('click', () => {
+            let novoTexto = prompt("Editar tarefa:", texto);
+            if (novoTexto) {
+                listas[listaAtual][index] = novoTexto;
+                atualizarTarefas();
+                salvar();
+            }
+        });
+        acoes.appendChild(botaoEditar);
+
+        // Excluir tarefa
+        let botaoExcluir = document.createElement('button');
+        botaoExcluir.innerHTML = '<img src="img/lixeira-de-reciclagem.png" alt="Excluir">';
+        botaoExcluir.title = "Excluir";
+        botaoExcluir.addEventListener('click', () => {
+            listas[listaAtual].splice(index, 1);
+            atualizarTarefas();
+            salvar();
+        });
+        acoes.appendChild(botaoExcluir);
+
+        item.appendChild(span);
+        item.appendChild(acoes);
+        listaTarefas.appendChild(item);
+    });
+    
+    document.querySelector('.postit h2').textContent = listaAtual ? listaAtual: 'Organize seu dia';
+}
+
+// Adicionar tarefa
 adicionar.addEventListener('click', function() {
+    if (!listaAtual) return alert("Selecione ou crie uma lista primeiro!");
     const texto = tarefa.value.trim();
     if (!texto) return alert("Digite uma tarefa!");
 
-    let item = document.createElement('li');
-
-    // texto da tarefa
-    let span = document.createElement('span');
-    span.textContent = texto;
-
-    // contêiner de botões
-    let acoes = document.createElement('div');
-    acoes.classList.add('acoes');
-
-    // botão editar
-    let botaoEditar = document.createElement('button');
-    botaoEditar.innerHTML = '<img src="img/botao-editar.png" alt="Editar">';
-    botaoEditar.title = "Editar";
-    botaoEditar.addEventListener('click', () => {
-        editarTarefa(span, botaoEditar, item, acoes);
-    });
-    acoes.appendChild(botaoEditar);
-
-    // botão excluir
-    let botaoExcluir = document.createElement('button');
-    botaoExcluir.innerHTML = '<img src="img/lixeira-de-reciclagem.png" alt="Excluir">';
-    botaoExcluir.title = "Excluir";
-    botaoExcluir.addEventListener('click', () => {
-        lista.removeChild(item);
-    });
-    acoes.appendChild(botaoExcluir);
-
-    // adiciona tudo no item
-    item.appendChild(span);
-    item.appendChild(acoes);
-    lista.appendChild(item);
-
-    // limpa input
+    listas[listaAtual].push(texto); // salva na lista atual
     tarefa.value = '';
+    atualizarTarefas();        
+    salvar();    
 });
 
-// função de edição
-function editarTarefa(span, botaoEditar, item, acoes) {
+//Enter para adicionar tarefa
+tarefa.addEventListener('keydown', e => {
+    if (e.key === 'Enter') adicionar.click(); 
+});
+
+// Adicionar lista
+adicionarLista.addEventListener('click', () => {
+    const texto = nomeLista.value.trim();
+    if (!texto) return alert("Digite o nome da lista!");
+    if (listas[texto]) return alert("Essa lista já existe!");
+
+    listas[texto] = [];
+    listaAtual = texto;
+    nomeLista.value = '';
+
+    atualizarListasLaterais();
+    atualizarTarefas();
+    salvar();
+});
+
+// Pressionar Enter para adicionar lista
+nomeLista.addEventListener('keydown', e => {
+    if (e.key === 'Enter') adicionarLista.click();
+});
+
+  // Atualiza a lateral de listas
+function atualizarListasLaterais() {
+    outrasListas.innerHTML = '';
+    for (let nome in listas) {
+        let item = document.createElement('li');
+        let span = document.createElement('span');
+        span.textContent = nome;
+        span.style.cursor = 'pointer';
+        span.addEventListener('click', () => selecionarLista(nome));
+
+        let acoes = document.createElement('div');
+        acoes.classList.add('acoes');
+
+        let botaoEditar = document.createElement('button');
+        botaoEditar.innerHTML = '<img src="img/botao-editar.png" alt="Editar">';
+        botaoEditar.title = "Editar";
+        botaoEditar.addEventListener('click', () => editarLista(span, botaoEditar, item, acoes, nome));
+        acoes.appendChild(botaoEditar);
+
+        let botaoExcluir = document.createElement('button');
+        botaoExcluir.innerHTML = '<img src="img/lixeira-de-reciclagem.png" alt="Excluir">';
+        botaoExcluir.title = "Excluir";
+        botaoExcluir.addEventListener('click', () => {
+            delete listas[nome];
+            if (listaAtual === nome) listaAtual = null;
+            atualizarListasLaterais();
+            atualizarTarefas();
+            salvar();
+        });
+        acoes.appendChild(botaoExcluir);
+
+        item.appendChild(span);
+        item.appendChild(acoes);
+        outrasListas.appendChild(item);
+    }
+}
+
+// Editar lista
+function editarLista(span, botaoEditar, item, acoes, nomeAntigo) {
     let input = document.createElement('input');
     input.type = 'text';
     input.value = span.textContent;
@@ -60,56 +159,35 @@ function editarTarefa(span, botaoEditar, item, acoes) {
     span.style.display = 'none';
     botaoEditar.style.display = 'none';
 
-    // botão salvar
     let botaoSalvar = document.createElement('button');
     botaoSalvar.innerHTML = '<img src="img/salvar.png" alt="Salvar">';
-    botaoSalvar.title = 'Salvar';
     botaoSalvar.addEventListener('click', () => {
-        if (input.value.trim() === '') return alert('Por favor, preencha esse local.');
-        span.textContent = input.value;
-        finalizarEdit();
+        if (input.value.trim() === '') return alert("Digite um nome para a lista!");
+        let novoNome = input.value.trim();
+        listas[novoNome] = listas[nomeAntigo];
+        delete listas[nomeAntigo];
+
+        if (listaAtual === nomeAntigo) listaAtual = novoNome;
+
+        atualizarListasLaterais();
+        atualizarTarefas();
+        salvar();
     });
 
-    // botão cancelar
     let botaoCancelar = document.createElement('button');
     botaoCancelar.innerHTML = '<img src="img/cancelar.png" alt="Cancelar">';
-    botaoCancelar.title = 'Cancelar';
-    botaoCancelar.addEventListener('click', finalizarEdit);
-
-    // adiciona no mesmo contêiner
-    acoes.appendChild(botaoSalvar);
-    acoes.appendChild(botaoCancelar);
-
-    function finalizarEdit() {
+    botaoCancelar.addEventListener('click', () => {
         input.remove();
         botaoSalvar.remove();
         botaoCancelar.remove();
         span.style.display = '';
         botaoEditar.style.display = '';
-    }
-}
-
-let nomeLista = document.getElementById('nomeLista');
-let adicionarLista = document.getElementById('adicionarLista');
-let outrasListas = document.getElementById('outras-listas');
-
-adicionarLista.addEventListener('click', function() {
-    const texto = nomeLista.value.trim();
-    if (!texto) return alert("Digite o nome da lista!");
-
-    let item = document.createElement('li');
-    item.textContent = texto;
-
-    let botaoExcluir = document.createElement('button');
-    botaoExcluir.innerHTML = '<img src="img/lixeira-de-reciclagem.png" alt="Excluir">'
-    botaoExcluir.style.marginLeft = "10px";
-    botaoExcluir.style.cursor = "pointer";
-    botaoExcluir.addEventListener('click', () => {
-        outrasListas.removeChild(item);
     });
 
-    item.appendChild(botaoExcluir);
-    outrasListas.appendChild(item);
+    acoes.appendChild(botaoSalvar);
+    acoes.appendChild(botaoCancelar);
+}
 
-    nomeLista.value = '';
-});
+// Inicializa listas ao carregar
+atualizarListasLaterais();
+atualizarTarefas();

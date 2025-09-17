@@ -3,23 +3,22 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
+    font-family: "Oswald", sans-serif;    box-sizing: border-box;
     overflow-x: hidden;
-    background-color: #c94444;
-    color: rgb(250, 250, 250);
+    background-color: #fff;
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
+
+    
 }
 
+
 header {
-    display: flex;            /* coloca botão e h1 na mesma linha */
-    align-items: center;      /* centraliza verticalmente */
-    gap: 16px;                /* espaço entre botão e título */
     height: 56px;             /* altura do header */
     padding: 0 16px 0 100px;          /* espaço lateral */
     background: #fff;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #c4c4c4;
     position: fixed;
     top: 0;
     left: 0;
@@ -27,25 +26,27 @@ header {
     z-index: 1100;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: normal;
-    color: #202124;
-    margin-left: 16px;
+.box-header {
+    background-color: #3cfd6c;
 }
-
-
 
 nav {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: rgba(218, 216, 216, 0.514);
+    align-items: center; /* centraliza verticalmente */
+    gap: 10px;           /* espaço entre elementos */
+    height: 56px;        /* mesma altura do header */
+    background: #3cfd6c;
     position: fixed;
     top: 0;
     left: 0;
+    padding: 0 16px;
     z-index: 1000;
+}
+
+.nav-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 li button img {
@@ -54,22 +55,47 @@ li button img {
     object-fit: contain; /* garante proporção */
 }
 
-body.menuOpen nav ul.menu {
-    visibility: visible;
+.menu {
+    position: fixed;
+    top: 56px; /*altura do header*/
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    
+}
+
+body.menuOpen .menu {
+    transform: translateX(0);
 }
 
 .buttonMenu {
-        background: none;
-        border: none;
-        padding: 8px;
-        border-radius: 50%;
-        cursor: pointer;
-        color: #5f6368; /* cinza padrão do Google */
+    width: 40px;
+    height: 40px;
+    background: rgba(60,64,67,0.08); 
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-.buttonMenu {
-    background: rgba(60,64,67,0.08); /* cinza claro */
+.logo {
+    height: 245px;
+    width: auto;
+    object-fit: contain; /*evita distorção*/
 }
+
+.nav-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 
 nav ul.menu {
     display: flex;
@@ -78,7 +104,6 @@ nav ul.menu {
     margin: 0;
     padding: 10px 0;
     gap: 20px;
-    visibility: hidden;
 }
 
 nav ul.menu li a {
@@ -93,7 +118,7 @@ nav ul.menu li a {
 }
 
 nav ul.menu li:hover {
-    background: rgb(155, 0, 0);
+    background: #991abd;
     color: rgb(255, 248, 248);
 }
 
@@ -107,7 +132,7 @@ main {
 
 .conteudo {
     display: flex;
-    justify-content: flex-start; /*Começa da esquerda*/
+    justify-content: center; /*centraliza horizontalmente*/
     align-items: flex-start;
     gap: 20px; /*espaço entre as colunas*/
     width: 100%;
@@ -154,10 +179,14 @@ main {
 
 .lista-cadastradas {
     flex: 1; /*ocupa menos espaço*/
-    background: #942a2a;
+    background: #34123d;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .lista-cadastradas ul {
@@ -170,7 +199,7 @@ main {
 }
 
 .lista-cadastradas li {
-    background: #c94444;
+    background: #34123d;
     padding: 8px;
     border-radius: 6px;
     text-align: center;
@@ -184,7 +213,7 @@ main {
     box-sizing: border-box;
 }       
 
-.lista-cadastradas button {
+.listas-cadastradas button {
     cursor: pointer;
   background: #5f6368;
   color: #fff;
@@ -213,12 +242,13 @@ input, #adicionar {
     margin-top: 5px;
 }
 
+
 .navegacao {
     display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 90px;
-        background: #942a2a;
+        width: 180px;
+        background: #34123d;
         padding: 8px;
         border-radius: 4px;
         font-size: 16px;
@@ -230,8 +260,9 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 310px;              /* ocupa toda a largura */
-    background: #942a2a;
+    width: 100%;
+    max-width: 310px;             /* ocupa toda a largura */
+    background: #858087;
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 4px;
@@ -241,6 +272,27 @@ li {
 
 li span {
     flex: 1;
+}
+
+#outras-listas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#outras-listas li {
+    background: #858087;
+    padding: 8px;
+    border-radius: 6px;
+    width: 80%;            /* largura uniforme para todas */
+    display: flex;         /* flex para os botões */
+    justify-content: space-between; /* texto à esquerda, botões à direita */
+    align-items: center;
 }
 
 .acoes button{

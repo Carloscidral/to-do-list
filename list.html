@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Krona+One&family=Open+Sans:ital,wght@0,700;1,700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <title>Lista de Tarefas</title>
     <link rel="stylesheet" href="list.css">
 </head>
 <body>
     <header class="box-header">
-        <nav>
+        <nav class="nav">
             <button type="button" id="menubtn" class="buttonMenu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -16,6 +19,9 @@
              <line x1="3" y1="12" x2="21" y2="12"></line>
              <line x1="3" y1="18" x2="21" y2="18"></line>
            </svg></button>
+
+           <img src="img/logo.png" alt="postit" class="logo">
+
             <ul class="menu">
                 <li class="navegacao"><a href="#lista">Lista</a></li>
                 <li class="navegacao"><a href="#registro">Registro</a></li>
@@ -23,7 +29,6 @@
                 <li class="navegacao"><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <h1>Minha Lista de Tarefas</h1>
     </header>
     <main>
         <div class="conteudo">
