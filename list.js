@@ -7,6 +7,12 @@ menuBtn.onclick = () => {
     document.body.classList.toggle("menuOpen");
 };
 
+const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('change', () => {
+    document.body.classList.toggle('tema-escuro', themeToggle.checked);
+})
+
 let nomeLista = document.getElementById('nomeLista');
 let adicionarLista = document.getElementById('adicionarLista');
 let outrasListas = document.getElementById('outras-listas');
@@ -14,6 +20,25 @@ let listaTarefas = document.getElementById('lista');
 
 let listas = JSON.parse(localStorage.getItem('listas')) || {}
 let listaAtual = localStorage.getItem('listaAtual') || null;
+const atualizarListasOrig = atualizarListasLaterais;
+
+atualizarListasLaterais = function() {
+    atualizarListasOrig(); 
+    atualizarCarrosselListas(); 
+};
+
+const carrosselListas = document.getElementById('itens-carrossel');
+
+function atualizarCarrosselListas() {
+    carrosselListas.innerHTML = ''; // limpa antes de atualizar
+    for (let nome in listas) {     // <--- Aqui você usa 'listas', mas ainda não foi declarado
+        const span = document.createElement('span');
+        span.textContent = nome;
+        carrosselListas.appendChild(span);
+    }
+}
+
+
 
 //Atualiza localStorage
 function salvar() {
@@ -46,12 +71,14 @@ function atualizarTarefas() {
         botaoEditar.innerHTML = '<img src="img/botao-editar.png" alt="Editar">';
         botaoEditar.title = "Editar";
         botaoEditar.addEventListener('click', () => {
-            let novoTexto = prompt("Editar tarefa:", texto);
-            if (novoTexto) {
-                listas[listaAtual][index] = novoTexto;
-                atualizarTarefas();
-                salvar();
-            }
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.value = span.textContent;
+            input.style.flex = '1';
+
+            item.insertBefore(input, span);
+            span.style.display = 'none';
+            botaoEditar.style.display = 'none';
         });
         acoes.appendChild(botaoEditar);
 
@@ -73,6 +100,8 @@ function atualizarTarefas() {
     
     document.querySelector('.postit h2').textContent = listaAtual ? listaAtual: 'Organize seu dia';
 }
+
+
 
 // Adicionar tarefa
 adicionar.addEventListener('click', function() {
