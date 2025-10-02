@@ -1,0 +1,105 @@
+.pagina-registro .postit {
+    background: #b5f4bc;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pagina-registro .postit input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pagina-registro .botao {
+    cursor: pointer;
+    background: #5f6368;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.pagina-registro .botao:hover {
+    background: #3c4043;
+}
+
+/* LISTA DE USUÁRIOS */
+.pagina-registro .listas-cadastradas {
+    background: #b5f4bc;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pagina-registro .listas-cadastradas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pagina-registro .listas-cadastradas li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #858087;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.pagina-registro .listas-cadastradas li span {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pagina-registro .listas-cadastradas li button.excluir {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin-left: 6px;
+    background-color: #ffffff; /* branco */
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listas-cadastradas li button.excluir:hover {
+    background-color: #3c4043; 
+}
+
+.pagina-registro .listas-cadastradas li button.excluir img {
+    width: 16px;
+    height: 16px;
+}
+
+
+@media (max-width: 768px) {
+    .pagina-registro .conteudo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagina-registro .postit,
+    .pagina-registro .listas-cadastradas {
+        width: 90%;
+    }
+}
