@@ -1,0 +1,82 @@
+<main class="main-registro">
+  <div class="registro-card">
+    <h2>Crie sua conta</h2>
+
+    <!-- Mensagem de status -->
+    <div 
+      *ngIf="message"
+      class="mensagem"
+      [class.sucesso]="messageType === 'success'"
+      [class.erro]="messageType === 'error'">
+      {{ message }}
+    </div>
+
+    <!-- Campo nome -->
+    <input 
+      type="text" 
+      [(ngModel)]="userData.nome"
+      placeholder="Digite seu nome completo" 
+      required>
+
+    <!-- Campo email -->
+    <input 
+      type="email" 
+      [(ngModel)]="userData.email"
+      placeholder="Digite seu email" 
+      required>
+
+    <!-- Campo senha -->
+    <div class="senha-container">
+      <input 
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="userData.senha"
+        placeholder="Digite sua senha" 
+        required>
+      <button 
+        type="button" 
+        class="mostrar-senha"
+        (click)="togglePassword()">
+        {{ showPassword ? '🙈' : '👁️' }}
+      </button>
+    </div>
+
+    <!-- Campo confirmar senha -->
+    <input 
+      type="password" 
+      [(ngModel)]="userData.confirmarSenha"
+      placeholder="Confirme sua senha" 
+      required>
+
+    <!-- Checkbox LGPD -->
+    <div class="lgpd-container">
+      <input 
+        type="checkbox" 
+        [(ngModel)]="userData.aceiteLGPD"
+        id="aceiteLGPD">
+      <label for="aceiteLGPD">
+        Li e concordo com os <a routerLink="/terms" target="_blank">termos de LGPD</a>
+      </label>
+    </div>
+
+    <!-- Botão registrar -->
+    <button 
+      class="botao"
+      (click)="onRegister()">
+      Registrar
+    </button>
+
+    <!-- Lista de usuários registrados -->
+    <h3>Usuários Registrados</h3>
+    <ul class="lista-usuarios">
+      <li *ngFor="let user of users; let i = index">
+        <span>{{ user.nome }} - {{ user.email }}</span>
+        <button 
+          class="btn-excluir"
+          (click)="removeUser(i)"
+          title="Remover usuário">
+          <img src="assets/img/lixeira-de-reciclagem.svg" alt="Excluir">
+        </button>
+      </li>
+    </ul>
+  </div>
+</main>

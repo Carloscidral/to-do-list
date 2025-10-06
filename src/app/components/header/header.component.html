@@ -1,0 +1,46 @@
+<header class="box-header">
+  <nav class="nav">
+    
+    <button type="button" class="buttonMenu" (click)="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    
+   
+    <img src="assets/img/logo.svg" alt="StickyStudy" class="logo">
+
+    
+  
+    <input 
+      type="checkbox" 
+      class="theme-checkbox" 
+      [checked]="isDarkTheme"
+      (change)="toggleTheme()">
+    
+   
+    <ul class="menu" [class.open]="isMenuOpen">
+      <li class="navegacao"><a routerLink="/list" (click)="toggleMenu()">Lista</a></li>
+      <li class="navegacao"><a routerLink="/register" (click)="toggleMenu()">Registro</a></li>
+      
+      <!-- Opções baseadas no estado de login -->
+      <li class="navegacao" *ngIf="!isLoggedIn">
+        <a routerLink="/login" (click)="toggleMenu()">Login</a>
+      </li>
+      
+      <li class="navegacao" *ngIf="isLoggedIn">
+        <span class="user-info">Olá, {{ currentUser?.nome }}!</span>
+      </li>
+      
+      <li class="navegacao" *ngIf="isLoggedIn">
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </li>
+      
+      <li class="navegacao"><a routerLink="/contact" (click)="toggleMenu()">Contato</a></li>
+    </ul>
+  </nav>
+</header>

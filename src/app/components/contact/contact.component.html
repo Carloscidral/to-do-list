@@ -1,0 +1,17 @@
+<main class="pagina-contato">
+  <div class="conteudo">
+    <div class="postit">
+      <h2>Contato</h2>
+      <ul class="contatos">
+        <li *ngFor="let contact of contacts">
+          <a [href]="contact.url" target="_blank">
+            <img 
+              [src]="contact.icon" 
+              [alt]="contact.alt" 
+              class="icone-contato">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>

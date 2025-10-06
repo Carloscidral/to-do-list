@@ -1,0 +1,175 @@
+/* Estilos do header - baseado no CSS original */
+header {
+  height: 56px;
+  padding: 0 16px 0 100px;
+  background: #fff;
+  border-bottom: 1px solid #c4c4c4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+}
+
+.box-header {
+  background-color: #3cfd6c;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 80px;
+  background: #3cfd6c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+.theme-checkbox {
+  --toggle-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 4em;
+  height: 2em;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--toggle-size);
+  margin-left: auto;
+}
+
+.theme-checkbox::before {
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+  left: calc(100% - 1.5em - 0.25em);
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
+}
+
+.menu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #3cfd6c;
+  padding: 10px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  gap: 20px;
+}
+
+:host-context(body.menuOpen) .menu {
+  transform: translateX(0);
+}
+
+.buttonMenu {
+  width: 40px;
+  height: 40px;
+  background: rgba(60, 64, 67, 0.08);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin: 0 10px;
+}
+
+.menu li a {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+
+.menu li:hover {
+  background: #2e2c2c;
+  color: rgb(255, 248, 248);
+}
+
+.navegacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  background: #000000;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  height: auto;
+}
+
+/* Estilos para informações do usuário */
+.user-info {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+/* Estilos para botão de logout */
+.logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .menu {
+    width: 70%;
+  }
+}

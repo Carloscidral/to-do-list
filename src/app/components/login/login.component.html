@@ -1,0 +1,51 @@
+<main class="pagina-login">
+  <div class="conteudo">
+    <div class="postit">
+      <h2>Login</h2>
+      
+      <!-- Campo de email -->
+      <input 
+        type="email" 
+        [(ngModel)]="credentials.email"
+        placeholder="Email"
+        class="email-input">
+      
+      <!-- Campo de senha com botão de mostrar/ocultar -->
+      <div class="campo-senha">
+        <input 
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="credentials.senha"
+          placeholder="Senha"
+          (keydown.enter)="onEnterKey()"
+          class="password-input">
+        <button 
+          type="button" 
+          class="mostrar-senha"
+          (click)="togglePassword()">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </button>
+      </div>
+      
+      <!-- Botão de login -->
+      <button 
+        class="botao"
+        (click)="onLogin()">
+        Entrar
+      </button>
+      
+      <!-- Mensagem de status -->
+      <p 
+        *ngIf="message"
+        class="mensagem"
+        [class.sucesso]="messageType === 'success'"
+        [class.erro]="messageType === 'error'">
+        {{ message }}
+      </p>
+      
+      <!-- Link para registro -->
+      <p class="registro-link">
+        Não tem uma conta? <a routerLink="/register">Cadastre-se</a>
+      </p>
+    </div>
+  </div>
+</main>

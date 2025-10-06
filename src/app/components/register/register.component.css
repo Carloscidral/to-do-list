@@ -1,0 +1,164 @@
+/* Estilos do componente Register - baseado no registro.css original */
+
+.main-registro {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.registro-card {
+  background: #b5f4bc;
+  color: #000;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.registro-card h2, 
+.registro-card h3 {
+  text-align: center;
+  margin: 8px 0;
+}
+
+.registro-card input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: "Oswald", sans-serif;
+  box-sizing: border-box;
+}
+
+.botao {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #5f6368;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.botao:hover {
+  background: #3c4043;
+}
+
+.lista-usuarios {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.lista-usuarios li {
+  background: #858087;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.senha-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.mostrar-senha {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.mensagem {
+  text-align: center;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  display: block;
+}
+
+.mensagem.sucesso {
+  background: #28a745;
+  color: white;
+}
+
+.mensagem.erro {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-excluir {
+  background: white;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.btn-excluir:hover {
+  background-color: #666;
+}
+
+.btn-excluir img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.lgpd-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  margin: 10px;
+  width: 100%;
+}
+
+.lgpd-container input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+}
+
+.lgpd-container label {
+  line-height: 1.3;
+  text-align: center;
+  flex: 1;
+}
+
+.lgpd-container a {
+  color: #3c4043;
+  text-decoration: underline;
+  margin-left: 3px;
+}
+
+@media (max-width: 768px) {
+  .registro-card {
+    width: 90%;
+  }
+}

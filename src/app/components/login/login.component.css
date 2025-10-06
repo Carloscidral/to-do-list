@@ -1,0 +1,125 @@
+/* Estilos do componente Login - baseado no login.css original */
+
+.pagina-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.pagina-login .conteudo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pagina-login .postit {
+  background: #b5f4bc;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 340px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.pagina-login .postit h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.email-input,
+.password-input {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.botao {
+  cursor: pointer;
+  background: #5f6368;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.botao:hover {
+  background: #3c4043;
+}
+
+/* Campo de senha com botão */
+.campo-senha {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mostrar-senha {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.mostrar-senha:hover {
+  transform: scale(1.2);
+}
+
+/* Mensagens de status */
+.mensagem {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+  display: block;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.mensagem.sucesso {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.mensagem.erro {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+/* Link para registro */
+.registro-link {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.registro-link a {
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.registro-link a:hover {
+  color: #2b6e35;
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .pagina-login .postit {
+    width: 90%;
+  }
+}

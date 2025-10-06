@@ -1,0 +1,203 @@
+/* Estilos do componente Lista - baseado no list.css original */
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px;
+}
+
+.conteudo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.postit {
+  max-width: 400px;
+  flex: 1;
+  background: #b5f4bc;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.listas-cadastradas {
+  flex: 1;
+  background: #b5f4bc;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-input,
+.list-input,
+.edit-input {
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.listas-cadastradas .task-input,
+.listas-cadastradas .list-input {
+  margin: 10px;
+  padding: 10px;
+  width: 500px;
+  box-sizing: border-box;
+}
+
+.botao {
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: #5f6368;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.botao:hover {
+  background: #3c4043;
+}
+
+.listas-cadastradas .botao {
+  cursor: pointer;
+  background: #5f6368;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding: 8px;
+  width: calc(100% - 20px);
+}
+
+.listas-cadastradas .botao:hover {
+  background: #3c4043;
+}
+
+.lista-tarefas {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.task-item,
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 310px;
+  background: #858087;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  height: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.task-text,
+.list-name {
+  flex: 1;
+  min-width: 0;
+  margin-right: 8px;
+  color: white;
+}
+
+.list-name {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.list-name:hover {
+  color: #3cfd6c;
+}
+
+.list-name.active {
+  color: #3cfd6c;
+  font-weight: bold;
+}
+
+.acoes {
+  display: flex;
+  flex-shrink: 0;
+  gap: 5px;
+}
+
+.action-btn {
+  background: white;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  margin: 0px;
+  transition: background 0.3s;
+}
+
+.action-btn:hover {
+  background: #f0f0f0;
+}
+
+.acoes img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+#outras-listas {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0px 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .conteudo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .postit,
+  .listas-cadastradas {
+    width: 90%;
+    max-width: none;
+  }
+}

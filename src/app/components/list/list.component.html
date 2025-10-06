@@ -1,0 +1,153 @@
+<main>
+  <div class="conteudo">
+    <!-- Painel principal de tarefas -->
+    <div class="postit">
+      <h2>{{ currentList || 'Organize seu dia' }}</h2>
+      
+      <!-- Input para nova tarefa -->
+      <input 
+        type="text" 
+        [(ngModel)]="newTask"
+        placeholder="Digite uma tarefa"
+        (keydown.enter)="onEnterKey('addTask')"
+        class="task-input">
+      
+      <!-- Botão adicionar tarefa -->
+      <button 
+        class="botao" 
+        (click)="addTask()">
+        Adicionar tarefa
+      </button>
+      
+      <!-- Lista de tarefas da lista atual -->
+      <ul class="lista-tarefas">
+        <li *ngFor="let task of currentListTasks; let i = index" class="task-item">
+          <!-- Modo de visualização -->
+          <span *ngIf="!isEditingTask(currentList!, i)" class="task-text">
+            {{ task }}
+          </span>
+          
+          <!-- Modo de edição -->
+          <input 
+            *ngIf="isEditingTask(currentList!, i)"
+            type="text"
+            [(ngModel)]="editTaskText"
+            (keydown.enter)="onEnterKey('saveTask')"
+            class="edit-input">
+          
+          <!-- Ações da tarefa -->
+          <div class="acoes">
+            <!-- Botões de edição (modo visualização) -->
+            <ng-container *ngIf="!isEditingTask(currentList!, i)">
+              <button 
+                (click)="startEditTask(currentList!, i)"
+                class="action-btn"
+                title="Editar">
+                <img src="assets/img/botao-editar.svg" alt="Editar">
+              </button>
+              <button 
+                (click)="removeTask(currentList!, i)"
+                class="action-btn"
+                title="Excluir">
+                <img src="assets/img/lixeira-de-reciclagem.svg" alt="Excluir">
+              </button>
+            </ng-container>
+            
+            <!-- Botões de edição (modo edição) -->
+            <ng-container *ngIf="isEditingTask(currentList!, i)">
+              <button 
+                (click)="saveTaskEdit()"
+                class="action-btn"
+                title="Salvar">
+                <img src="assets/img/salvar.svg" alt="Salvar">
+              </button>
+              <button 
+                (click)="cancelTaskEdit()"
+                class="action-btn"
+                title="Cancelar">
+                <img src="assets/img/cancelar.svg" alt="Cancelar">
+              </button>
+            </ng-container>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Painel de listas cadastradas -->
+    <div class="listas-cadastradas">
+      <h2>Listas Cadastradas</h2>
+      
+      <!-- Input para nova lista -->
+      <input 
+        type="text" 
+        [(ngModel)]="newListName"
+        placeholder="Digite o nome da lista"
+        (keydown.enter)="onEnterKey('addList')"
+        class="list-input">
+      
+      <!-- Botão adicionar lista -->
+      <button 
+        class="botao" 
+        (click)="addList()">
+        Adicionar Lista
+      </button>
+      
+      <!-- Lista de todas as listas -->
+      <ul id="outras-listas">
+        <li *ngFor="let listName of getListNames()" class="list-item">
+          <!-- Modo de visualização -->
+          <span 
+            *ngIf="!isEditingList(listName)"
+            (click)="selectList(listName)"
+            class="list-name"
+            [class.active]="listName === currentList">
+            {{ listName }}
+          </span>
+          
+          <!-- Modo de edição -->
+          <input 
+            *ngIf="isEditingList(listName)"
+            type="text"
+            [(ngModel)]="editListText"
+            (keydown.enter)="onEnterKey('saveList')"
+            class="edit-input">
+          
+          <!-- Ações da lista -->
+          <div class="acoes">
+            <!-- Botões de edição (modo visualização) -->
+            <ng-container *ngIf="!isEditingList(listName)">
+              <button 
+                (click)="startEditList(listName)"
+                class="action-btn"
+                title="Editar">
+                <img src="assets/img/botao-editar.svg" alt="Editar">
+              </button>
+              <button 
+                (click)="removeList(listName)"
+                class="action-btn"
+                title="Excluir">
+                <img src="assets/img/lixeira-de-reciclagem.svg" alt="Excluir">
+              </button>
+            </ng-container>
+            
+            <!-- Botões de edição (modo edição) -->
+            <ng-container *ngIf="isEditingList(listName)">
+              <button 
+                (click)="saveListEdit()"
+                class="action-btn"
+                title="Salvar">
+                <img src="assets/img/salvar.svg" alt="Salvar">
+              </button>
+              <button 
+                (click)="cancelListEdit()"
+                class="action-btn"
+                title="Cancelar">
+                <img src="assets/img/cancelar.svg" alt="Cancelar">
+              </button>
+            </ng-container>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>

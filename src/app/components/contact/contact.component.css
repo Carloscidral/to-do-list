@@ -1,0 +1,72 @@
+/* Estilos do componente Contact - baseado no contato.css original */
+
+.pagina-contato {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.pagina-contato .conteudo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pagina-contato .postit {
+  background: #b5f4bc;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  align-items: center;
+}
+
+.pagina-contato .postit h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.pagina-contato .contatos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.pagina-contato .contatos li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icone-contato {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.icone-contato:hover {
+  transform: scale(1.2);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .pagina-contato .postit {
+    width: 90%;
+  }
+
+  .icone-contato {
+    width: 40px;
+    height: 40px;
+  }
+}

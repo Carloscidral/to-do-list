@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #3cfd6c; 
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  color: #333;
+  gap: 5px; 
+}
+
+.footer .copyright-img {
+  width: 20px; 
+  height: 20px;
+}
